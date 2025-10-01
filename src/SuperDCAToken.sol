@@ -12,9 +12,10 @@ contract SuperDCAToken is ERC20, Ownable, ERC20Permit {
     /// @notice Initializes the Super DCA token with name, symbol and initial supply
     /// @dev Mints initial supply to deployer
     constructor() ERC20("Super DCA", "DCA") Ownable(msg.sender) ERC20Permit("Super DCA") {
+        //@>q msg.sener is the owner. it must be the Gauge?
         _mint(msg.sender, 10000 * 10 ** decimals());
     }
-
+   
     /// @notice Mints new tokens to a specified address
     /// @dev Can only be called by the owner
     /// @param to The address to mint tokens to
