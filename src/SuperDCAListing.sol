@@ -12,7 +12,7 @@ import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/src/types/PoolId.sol";
 import {Currency} from "@uniswap/v4-core/src/types/Currency.sol";
 import {IHooks} from "@uniswap/v4-core/src/interfaces/IHooks.sol";
 import {StateLibrary} from "@uniswap/v4-core/src/libraries/StateLibrary.sol";
-import {TickMath} from "lib/v4-core/src/libraries/TickMath.sol";
+import {TickMath} from "superDca/lib/v4-core/src/libraries/TickMath.sol";
 import {LiquidityAmounts} from "lib/v4-core/test/utils/LiquidityAmounts.sol";
 
 import {IPositionManager} from "lib/v4-periphery/src/interfaces/IPositionManager.sol";
@@ -201,6 +201,7 @@ contract SuperDCAListing is ISuperDCAListing, Ownable2Step {
         // Retrieve actual pool key from position manager and validate it matches
         // the caller's provided key to prevent manipulation or misconfiguration
         (PoolKey memory key,) = POSITION_MANAGER_V4.getPoolAndPositionInfo(nftId);
+        //@>q need to test this checks
         if (
             Currency.unwrap(key.currency0) != Currency.unwrap(providedKey.currency0)
                 || Currency.unwrap(key.currency1) != Currency.unwrap(providedKey.currency1) || key.fee != providedKey.fee
